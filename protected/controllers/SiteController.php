@@ -118,6 +118,11 @@ class SiteController extends Controller
 
     public function actionRegistr() 
     {
+        if (!Yii::$app->user->isGuest) 
+        {
+            return $this->goHome();
+        }
+
         $model = new RegistrForm();
         
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) 
